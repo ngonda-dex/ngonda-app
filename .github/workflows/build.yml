@@ -30,6 +30,11 @@ jobs:
         run: |
           npx cap init Ngonda com.ngonda.app --web-dir=www
           npx cap add android
+          
+      - name: Correction forcee des doublons Kotlin
+        run: |
+          echo "ext.kotlin_version = '1.9.20'" >> android/build.gradle
+          sed -i 's/org.jetbrains.kotlin:kotlin-stdlib-jdk8:.\+..//g' android/app/build.gradle
           npx cap sync
           
       - name: Creation de l'application Android
