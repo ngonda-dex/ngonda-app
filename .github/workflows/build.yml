@@ -10,9 +10,14 @@ jobs:
           node-version: 20
       - run: npm install -g @capacitor/cli
       - run: npm install @capacitor/core @capacitor/android
-      - run: mkdir www && cp index.html www/ 2>/dev/null || true
-      - run: cp *.png www/ 2>/dev/null || true
-      - run: cp *.PNG www/ 2>/dev/null || true
+      - name: Preparation du dossier www
+        run: |
+          mkdir -p www
+          cp index.html www/ 2>/dev/null || true
+          cp *.png www/ 2>/dev/null || true
+          cp *.PNG www/ 2>/dev/null || true
+          cp *.jpg www/ 2>/dev/null || true
+          cp *.jpeg www/ 2>/dev/null || true
       - run: npx cap init Ngonda com.ngonda.app --web-dir=www
       - run: npx cap add android
       - run: npx cap sync
