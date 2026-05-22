@@ -6,16 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Installation du JDK 17
+      - name: Installation du JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'zulu'
-
-      - name: Configuration de Java 17 par defaut
-        run: |
-          echo "JAVA_HOME=$JAVA_HOME_17_X64" >> $GITHUB_ENV
-          echo "PATH=$JAVA_HOME_17_X64/bin:$PATH" >> $GITHUB_ENV
 
       - uses: actions/setup-node@v4
         with:
