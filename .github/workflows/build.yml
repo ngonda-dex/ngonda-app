@@ -1,4 +1,4 @@
-name: Générer un APK Android
+name: Generer un APK Android
 on: [push]
 jobs:
   build:
@@ -30,11 +30,11 @@ jobs:
       - run: npx cap add android
       - run: npx cap sync
       
-      - name: Créer une application Android
+      - name: Creer une application Android
         run: |
           cd android && ./gradlew assembleDebug
           
-      - name: Téléverser un fichier APK
+      - name: Televerser un fichier APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
