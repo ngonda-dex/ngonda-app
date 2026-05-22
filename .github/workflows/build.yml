@@ -1,15 +1,15 @@
 name: Generer un APK Android
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Installation du JDK 21
+      - name: Installation du JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: '17'
           distribution: 'zulu'
 
       - uses: actions/setup-node@v4
@@ -26,11 +26,13 @@ jobs:
           cp *.png www/ 2>/dev/null || true
           cp *.PNG www/ 2>/dev/null || true
           
-      - run: npx cap init Ngonda com.ngonda.app --web-dir=www
-      - run: npx cap add android
-      - run: npx cap sync
-      
-      - name: Nettoyage et Creation de l'application
+      - name: Initialisation de Capacitor
+        run: |
+          npx cap init Ngonda com.ngonda.app --web-dir=www
+          npx cap add android
+          npx cap sync
+          
+      - name: Creation de l'application Android
         run: |
           cd android
           ./gradlew clean
